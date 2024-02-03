@@ -14,7 +14,7 @@ function Headon() {
     console.log("hi" , batter , bowler);
 
     if (batter !== "") {
-      fetch(`http://127.0.0.1:5000/headon?batter=${encodeURIComponent(batter)}&bowler=${encodeURIComponent(bowler)}`
+      fetch(`https://ipl-sabermetrics.onrender.com/headon?batter=${encodeURIComponent(batter)}&bowler=${encodeURIComponent(bowler)}`
       , {
         method: 'POST',
       }).then((response) => response.json()).then((json) => { setData(...json); console.log(json) });

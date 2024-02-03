@@ -17,7 +17,7 @@ function BowlRank() {
 
         console.log(JSON.stringify(args));
 
-        const url = `http://localhost:5000/api/bowl?arguments=${encodeURIComponent(JSON.stringify(args))}`;
+        const url = `https://ipl-sabermetrics.onrender.com/api/bowl?arguments=${encodeURIComponent(JSON.stringify(args))}`;
 
         fetch(url, {
             method: 'POST',

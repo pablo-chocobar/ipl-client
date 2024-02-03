@@ -19,7 +19,7 @@ function BatRank() {
 
         console.log(JSON.stringify(args));
 
-        const url = `http://localhost:5000/api/bat?arguments=${encodeURIComponent(JSON.stringify(args))}`;
+        const url = `https://ipl-sabermetrics.onrender.com/api/bat?arguments=${encodeURIComponent(JSON.stringify(args))}`;
 
         fetch(url, {
             method: 'POST',

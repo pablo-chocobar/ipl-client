@@ -295,7 +295,7 @@ function Player() {
     useEffect(() => {
         console.log("hi", player);
         if (player !== "") {
-            fetch(`http://127.0.0.1:5000/playersearch?player=${encodeURIComponent(player)}`
+            fetch(`https://ipl-sabermetrics.onrender.com/playersearch?player=${encodeURIComponent(player)}`
                 , {
                     method: 'POST',
                 }).then((response) => response.json()).then((json) => { console.log(json); setData(json); });

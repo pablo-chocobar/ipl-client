@@ -17,7 +17,7 @@ function Headon() {
       fetch(`https://ipl-sabermetrics.onrender.com/headon?batter=${encodeURIComponent(batter)}&bowler=${encodeURIComponent(bowler)}`
       , {
         method: 'POST',
-      }).then((response) => response.json()).then((json) => { setData(...json); console.log(json) });
+      }).then((response) => response.json()).then((json) => { setData(...json);});
     }
 
     console.log("data" , data["bowler_color"]);

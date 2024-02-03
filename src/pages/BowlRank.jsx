@@ -14,14 +14,11 @@ function BowlRank() {
 
     async function dataloader() {
         const args = [inns, balls, runs]
-
-        console.log(JSON.stringify(args));
-
         const url = `https://ipl-sabermetrics.onrender.com/api/bowl?arguments=${encodeURIComponent(JSON.stringify(args))}`;
 
         fetch(url, {
             method: 'POST',
-        }).then((response) => response.json()).then(data => { console.log(data); setData(JSON.parse(data)) });
+        }).then((response) => response.json()).then(data => { setData(JSON.parse(data)) });
     }
 
     useEffect(() => {

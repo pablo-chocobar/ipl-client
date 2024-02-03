@@ -13,17 +13,13 @@ function BatRank() {
     const [data, setData] = useState({});
 
     async function dataloader() {
-
-        // const args = {"inns" : inns,"balls" : balls, "runs" : runs};
         const args = [inns , balls , runs]
-
-        console.log(JSON.stringify(args));
 
         const url = `https://ipl-sabermetrics.onrender.com/api/bat?arguments=${encodeURIComponent(JSON.stringify(args))}`;
 
         fetch(url, {
             method: 'POST',
-        }).then((response) => response.json()).then(data => {console.log(data) ; setData(JSON.parse(data))});
+        }).then((response) => response.json()).then(data => {setData(JSON.parse(data))});
     }
 
     useEffect(() => {

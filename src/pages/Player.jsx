@@ -298,9 +298,8 @@ function Player() {
             fetch(`https://ipl-sabermetrics.onrender.com/playersearch?player=${encodeURIComponent(player)}`
                 , {
                     method: 'POST',
-                }).then((response) => response.json()).then((json) => { console.log(json); setData(json); });
+                }).then((response) => response.json()).then((json) => {setData(json); });
         }
-        console.log("data", data["player_color"]);
 
     }, [player]);
 

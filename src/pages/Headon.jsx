@@ -24,11 +24,11 @@ function Headon() {
     console.log("data" , data["batter_color"]);
   } , [batter , bowler]);
 
-  // useEffect(()=>{
+  useEffect(()=>{
 
-  //   document.documentElement.style.setProperty('--bowlercolor', data["bowler_color"]);
-  //   document.documentElement.style.setProperty('--battercolor', data["batter_color"]);
-  // } , [data]);
+    document.documentElement.style.setProperty('--bowlercolor', data["bowler_color"]);
+    document.documentElement.style.setProperty('--battercolor', data["batter_color"]);
+  } , [data]);
 
   return (
     <div>

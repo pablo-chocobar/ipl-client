@@ -1,6 +1,4 @@
     import HomeCard from '../components/HomeCard'
-    import getBowlingStats from "@/lib/bowler"
-    import getBatterOverall from '@/lib/batter';
 
     // const f  = await getBowlingStats("R Ashwin");
     // const k = await displayBatterOverall("CH Gayle")
@@ -19,6 +17,8 @@
                         <HomeCard link = "/batrank" text="Batting Ranks" subtext="Batting Rankings"></HomeCard>
                         <HomeCard link = "/bowlrank" text = "Bowling Ranks" subtext="Bowling Rankings"></HomeCard>
                     </div>
+                    <HomeCard link = "/dummy" text = "dummy" subtext="REMOVE THIS"></HomeCard>
+
                 </div>
             </>
         )

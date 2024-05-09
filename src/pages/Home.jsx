@@ -1,19 +1,27 @@
-import HomeCard from '../components/HomeCard'
+    import HomeCard from '../components/HomeCard'
+    import getBowlingStats from "@/lib/bowler"
+    import getBatterOverall from '@/lib/batter';
 
-function Home() {
+    // const f  = await getBowlingStats("R Ashwin");
+    // const k = await displayBatterOverall("CH Gayle")
 
-    return (
-        <>
-            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 text-left">
-                <HomeCard link = "/player" fill={true} text="Player profile" subtext="See how a player has performed in the IPL"></HomeCard>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <HomeCard link = "/headon" text="Head vs Head" subtext="See how a player has performed in the IPL"></HomeCard>
-                    <HomeCard link = "/batrank" text="Batting Ranks" subtext="Batting Rankings"></HomeCard>
-                    <HomeCard link = "/bowlrank" text = "Bowling Ranks" subtext="Bowling Rankings"></HomeCard>
+    function Home() {
+
+        // pla();
+        // console.log(k);
+
+        return (
+            <>
+                <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 text-left">
+                    <HomeCard link = "/player" fill={true} text="Player profile" subtext="See how a player has performed in the IPL"></HomeCard>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <HomeCard link = "/headon" text="Head vs Head" subtext="See how a player has performed in the IPL"></HomeCard>
+                        <HomeCard link = "/batrank" text="Batting Ranks" subtext="Batting Rankings"></HomeCard>
+                        <HomeCard link = "/bowlrank" text = "Bowling Ranks" subtext="Bowling Rankings"></HomeCard>
+                    </div>
                 </div>
-            </div>
-        </>
-    )
-}
+            </>
+        )
+    }
 
-export default Home
+    export default Home

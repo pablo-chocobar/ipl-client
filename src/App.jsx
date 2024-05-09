@@ -6,6 +6,7 @@ import Headon from './pages/Headon'
 import Player from './pages/Player'
 import BatRank from './pages/BatRank'
 import BowlRank from './pages/BowlRank'
+import Dummy from "./pages/Dummy"
 import Navbar from './components/Navbar'
 
 import { Routes, Route } from 'react-router-dom'
@@ -23,6 +24,7 @@ function App() {
           <Route path='/headon' element={<Headon />} />
           <Route path='/batrank' element={<BatRank />} />
           <Route path='/bowlrank' element={<BowlRank />} />
+          <Route path='/dummy' element={<Dummy/>} />
         </Routes>
       </div>
     </>

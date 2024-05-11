@@ -1,12 +1,14 @@
 import React from 'react'
 
 function HeadonComparison(props) {
+
+
   return (
     <section className='pt-4'>
         
         <p class = "text-3xl font-extrabold font-PlayfairDisplay mx-[3%] px-10" > Head-to-Head</p>
 
-        <div class="relative mx-[5%] overflow-x-auto shadow-md rounded-lg">
+        {/* <div class="relative mx-[5%] overflow-x-auto shadow-md rounded-lg">
             <table class="w-full text-sm text-center text-content">
                 <thead class="text-xs bg-primary text-content uppercase">
                     <tr>
@@ -65,8 +67,38 @@ function HeadonComparison(props) {
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> */}
 
+<div className="relative mx-[5%] overflow-x-auto shadow-md no-scrollbar rounded-lg">
+  <table className="w-full text-sm text-center text-content ">
+    <thead className="text-xs bg-primary text-content uppercase">
+      <tr>
+        {Object.keys(props.data).map((key) => (
+          <th key={key} scope="col" className="px-2 py-3 text-center">
+            {/* {key.replaceAll("_", " ")} */}
+            {key}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-b border-gray-200">
+        {Object.values(props.data).map((value, index) => (
+          <td
+            key={index}
+            className={`px-2 py-4 text-center ${
+              index === 0 || index === 2 || index === 4 || index === 6
+                ? 'bg-primary font-medium'
+                : ''
+            }`}
+          >
+            {value}
+          </td>
+        ))}
+      </tr>
+    </tbody>
+  </table>
+</div>
 
     </section>
   )

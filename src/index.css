@@ -3,27 +3,44 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-      --color-primary: 247 247 247;
-      --color-content: 3 7 18;
-      --color-secondary: 182 187 196;
+  :root {
+    --color-primary: 247 247 247;
+    --color-content: 3 7 18;
+    --color-secondary: 182 187 196;
 
-      /* ... */
-    }
-
-    :root[data-theme="dark"] {
-        --color-primary: 3 7 18;
-        --color-content: 247 247 247;
-        --color-secondary: 49 48 77;
-    }
+    /* ... */
   }
 
-  input[type=number]::-webkit-outer-spin-button,
+  :root[data-theme="dark"] {
+    --color-primary: 3 7 18;
+    --color-content: 247 247 247;
+    --color-secondary: 49 48 77;
+  }
+}
+
+@layer utilities {
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+}
+
+
+input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }

@@ -1,19 +1,28 @@
-import getBowlingStats from "@/lib/bowler"
-import getBatterOverall from '@/lib/batter';
+// import getBowlingStats from "@/lib/bowler"
+// import getBatterOverall from '@/lib/batter';
+import headon from '@/lib/headon';
+import { useEffect } from 'react';
 
 
 
-async function pla() {
-    const f  = await getBowlingStats("R Ashwin");
-    const k = await getBatterOverall("CH Gayle")
+function pla() {
+    // const f  = await getBowlingStats("R Ashwin");
+    // const k = await getBatterOverall("CH Gayle");
+    // const [h, seth] = useState(null);
 
-    console.log(k);
-    console.log(f);
+    useEffect(() => {
+        async function foo(){
+            const h = await headon("CH Gayle", "R Ashwin").then(
+                (response) => console.log(response)
+            )
+        }
+        foo();
+    }, [])
 
     return (
-        <p>
+        <div>
             result
-        </p>
+        </div>
     )
 }
 

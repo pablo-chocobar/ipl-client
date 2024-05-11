@@ -11,7 +11,7 @@ const db = drizzle(sql, {
     schema
 });
 
-function getBatterRunsInMatch(deliveries, matchId) {
+export function getBatterRunsInMatch(deliveries, matchId) {
     const matchDeliveries = deliveries.filter(
         (delivery) =>
             delivery.MatchID === matchId &&
@@ -21,7 +21,7 @@ function getBatterRunsInMatch(deliveries, matchId) {
     return matchDeliveries.reduce((sum, delivery) => sum + delivery.runs_batter, 0);
 }
 
-function getBatterStats(deliveries, super_over , name) {
+export function getBatterStats(deliveries, super_over , name) {
     let balls, runs_that_count, sixes, fours, dots, outs;
 
     if (super_over === "include") {
@@ -58,7 +58,7 @@ function getBatterStats(deliveries, super_over , name) {
     return { balls: balls.length, runs: runs_that_count, sixes, fours, dots, outs };
 }
 
-function getBattingMetrics(balls, runs, outs, sixes, fours, dots) {
+export function getBattingMetrics(balls, runs, outs, sixes, fours, dots) {
     const average = outs > 0 ? Math.round((runs / outs) * 100) / 100 : null;
     const balls_per_boundary =
         sixes || fours ? Math.round((balls / (sixes + fours)) * 100) / 100 : null;
@@ -92,7 +92,7 @@ function getBattingMetrics(balls, runs, outs, sixes, fours, dots) {
     };
 }
 
-function getBatterHighest(deliveries) {
+export function getBatterHighest(deliveries) {
     const innings = [...new Set(deliveries.map((delivery) => delivery.MatchID))];
     const runs_list = innings.map((inning) =>
         getBatterRunsInMatch(deliveries, inning)
@@ -107,7 +107,7 @@ function getBatterHighest(deliveries) {
     return { innings: innings.length, hs, cents, hfcents, thirty };
 }
 
-async function getBatterOverall(name) {
+export async function getBatterOverall(name) {
     const deliveries = await db
         .select({
             MatchID: matches.match_id,
@@ -166,7 +166,7 @@ async function getBatterOverall(name) {
     };
 }
 
-function batterWickets(deliveries, name) {
+export function batterWickets(deliveries, name) {
     const batterdf = deliveries.filter((delivery) => delivery.batter === name);
     const outdf = deliveries.filter((delivery) => delivery.batterOut === name);
 
@@ -215,7 +215,7 @@ function batterWickets(deliveries, name) {
     return { howdict, wicketdf: sortedWicketdf };
 }
 
-async function getBatterStatsByYear(name) {
+export async function getBatterStatsByYear(name) {
     const deliveries = await fetchBatterDeliveries(name);
     const years = [...new Set(deliveries.map((delivery) => delivery.year))];
 
@@ -228,4 +228,4 @@ async function getBatterStatsByYear(name) {
     return yearwiseStats;
 }
 
-export default getBatterOverall;
+// export {getBatterOverall , getBatterStats , getBattingMetrics , batterWickets};

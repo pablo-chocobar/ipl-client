@@ -173,11 +173,11 @@ export function batterWickets(deliveries, name) {
     const runs = [], outs = [], balls = [], average = [], strike_rate = [];
     const stats = [runs, outs, balls, average, strike_rate];
 
-    const wicketdf = batterdf
-        .filter((delivery) => delivery.wicketKind !== "run out")
+    const wicketdf = outdf
+        .filter((delivery) => delivery.wicketKind != "run out")
         .reduce((acc, delivery) => {
             const bowler = delivery.bowler;
-            const isWicketDelivery = delivery.isWicketDelivery;
+            const isWicketDelivery = delivery.isWicketDelivery ? 1 : 0;
 
             if (!acc[bowler]) {
                 acc[bowler] = { bowler, out: 0 };
@@ -188,22 +188,7 @@ export function batterWickets(deliveries, name) {
         }, {});
 
     const sortedWicketdf = Object.values(wicketdf).sort((a, b) => b.out - a.out);
-
-    for (const { bowler } of sortedWicketdf) {
-        const bdf = getBatterVBowler(batterdf, name, bowler);
-        const temp = headon(bdf, name, bowler);
-
-        for (let i = 0; i < stats.length; i++) {
-            stats[i].push(temp[i]);
-        }
-    }
-
-    for (let i = 0; i < sortedWicketdf.length; i++) {
-        sortedWicketdf[i].runs = runs[i];
-        sortedWicketdf[i].balls = balls[i];
-        sortedWicketdf[i].average = average[i];
-        sortedWicketdf[i].strikerate = strike_rate[i];
-    }
+    console.log(sortedWicketdf);
 
     const how = [...new Set(outdf.map((delivery) => delivery.wicketKind))];
     const howdict = {};
@@ -212,7 +197,9 @@ export function batterWickets(deliveries, name) {
         howdict[kind] = outdf.filter((delivery) => delivery.wicketKind === kind).length;
     }
 
-    return { howdict, wicketdf: sortedWicketdf };
+    console.log(howdict)
+
+    return { howdict, wicketdf: sortedWicketdf};
 }
 
 export async function getBatterStatsByYear(name) {

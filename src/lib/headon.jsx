@@ -51,7 +51,7 @@ async function headon(batter, bowler) {
         balls, runs, sixes, fours, dots, outs, average, strike_rate, basra, balls_per_boundary, balls_per_four, balls_per_six, runs_from_fours, runs_from_sixes, runs_from_boundaries, runs_per_boundary, dot_ball_percentage,
     }
 
-    // const { howdict, wicketdf} = batterWickets(deliveries , batter);
+    const { howdict, wicketdf} = batterWickets(deliveries , batter);
 
     return to_be_displayed;
 

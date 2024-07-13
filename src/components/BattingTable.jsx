@@ -2,7 +2,6 @@ import {
     flexRender,
     getSortedRowModel,
     getCoreRowModel,
-    getPaginationRowModel,
     useReactTable,
   } from "@tanstack/react-table"
   
@@ -28,7 +27,7 @@ import {
       data,
       columns,
       getCoreRowModel: getCoreRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
+      // getPaginationRowModel: getPaginationRowModel(),
       onSortingChange: setSorting,
       getSortedRowModel: getSortedRowModel(),
       state: {
@@ -66,6 +65,7 @@ import {
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
+                    className = {"hover:bg-secondary/80"}
                   >
                     {row.getVisibleCells().map(cell => (
                       <TableCell key={cell.id} className = "py-3 px-1">

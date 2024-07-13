@@ -6,7 +6,7 @@ import * as schema from "@/db/schema";
 
 import { getBatterStats, getBattingMetrics, batterWickets } from './batter';
 
-const POSTGRES_URL = "postgres://default:79BDCyZPscYU@ep-falling-sound-a14b3thc-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require"
+const POSTGRES_URL = "postgresql://ipldb_owner:bE0rGxJ3XWhg@ep-crimson-boat-a1jkytyd.ap-southeast-1.aws.neon.tech/ipldb?sslmode=require"
 
 const sql = neon(POSTGRES_URL);
 const db = drizzle(sql, {

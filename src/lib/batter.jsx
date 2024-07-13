@@ -30,7 +30,7 @@ export function getBatterStats(deliveries, super_over , name) {
         sixes = balls.filter((delivery) => delivery.runs_batter === 6).length;
         fours = balls.filter((delivery) => delivery.runs_batter === 4).length;
         dots = balls.filter((delivery) => delivery.runs_batter === 0).length;
-        outs = deliveries.filter((delivery) => delivery.batterOut === name).length;
+        outs = deliveries.filter((delivery) => delivery.batterOut == name).length;
     } else if (super_over === "exclude") {
         balls = deliveries.filter(
             (delivery) => delivery.innings < 3 && delivery.extras_wides === 0
@@ -40,8 +40,9 @@ export function getBatterStats(deliveries, super_over , name) {
         fours = balls.filter((delivery) => delivery.runs_batter === 4).length;
         dots = balls.filter((delivery) => delivery.runs_batter === 0).length;
         outs = deliveries.filter(
-            (delivery) => delivery.innings < 3 && delivery.batterOut === name
+            (delivery) => (delivery.innings < 3 && delivery.batterOut == name)        
         ).length;
+
     } else if (super_over === "only") {
         balls = deliveries.filter(
             (delivery) => delivery.innings >= 3 && delivery.extras_wides === 0
@@ -51,7 +52,7 @@ export function getBatterStats(deliveries, super_over , name) {
         fours = balls.filter((delivery) => delivery.runs_batter === 4).length;
         dots = balls.filter((delivery) => delivery.runs_batter === 0).length;
         outs = deliveries.filter(
-            (delivery) => delivery.innings >= 3 && delivery.batterOut === name
+            (delivery) => delivery.innings >= 3 && delivery.batterOut == name
         ).length;
     }
 
@@ -105,6 +106,69 @@ export function getBatterHighest(deliveries) {
     const hs = runs_list.length > 0 ? Math.max(...runs_list) : null;
 
     return { innings: innings.length, hs, cents, hfcents, thirty };
+}
+
+export async function fetchBatterDeliveries(name){
+    const deliveries = await db
+    .select({
+        MatchID: matches.match_id,
+        innings: matches.innings,
+        batter: matches.batter,
+        batterOut: matches.batter_out,
+        extras_wides: matches.extras_wides,
+        runs_batter: matches.runs_batter,
+        wicketKind: matches.wicket_kind,
+        isWicketDelivery: matches.is_wicket_delivery,
+        bowler: matches.bowler,
+        year: matches.year,
+    })
+    .from(matches)
+    .where(eq(matches.batter , name));
+
+    return deliveries
+}
+
+export function displayBatterOverall(deliveries, name) {
+    const { balls, runs, sixes, fours, dots, outs } = getBatterStats(deliveries, "exclude", name);
+    const {
+        average,
+        strike_rate,
+        basra,
+        balls_per_boundary,
+        balls_per_four,
+        balls_per_six,
+        runs_from_fours,
+        runs_from_sixes,
+        runs_from_boundaries,
+        runs_per_boundary,
+        dot_ball_percentage,
+    } = getBattingMetrics(balls, runs, outs, sixes, fours, dots);
+    const { innings, hs, cents, hfcents, thirty } = getBatterHighest(deliveries);
+
+    return {
+        career_innings: innings,
+        total_balls: balls,
+        total_runs: runs,
+        career_highest: hs,
+        avg: average,
+        strike_rate,
+        cents,
+        fifty: hfcents,
+        thirty,
+        outs,
+        sixes,
+        fours,
+        dots,
+        balls_per_boundary,
+        balls_per_four,
+        balls_per_six,
+        runs_from_fours,
+        runs_from_sixes,
+        runs_from_boundaries,
+        runs_per_boundary,
+        basra,
+        dot_ball_percentage,
+    };
 }
 
 export async function getBatterOverall(name) {
@@ -208,7 +272,8 @@ export async function getBatterStatsByYear(name) {
 
     const yearwiseStats = years.map((year) => {
         const yearDeliveries = deliveries.filter((delivery) => delivery.year === year);
-        const stats = displayBatterOverall(yearDeliveries);
+        // console.log(yearDeliveries)
+        const stats = displayBatterOverall(yearDeliveries, name);
         return { year, ...stats };
     });
 

@@ -14,6 +14,7 @@ export default {
         primary: "rgb(var(--color-primary) / <alpha-value> )",
         secondary: "rgb(var(--color-secondary) / <alpha-value> )",
         content: "rgb(var(--color-content) / <alpha-value> )",
+        muted: "rgb(var(--color-muted) / <alpha-value> )",
 
       },
     },

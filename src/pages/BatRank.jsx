@@ -9,7 +9,7 @@ import * as schema from "@/db/schema";
 import { Input } from "../components/ui/input"
 
 
-const POSTGRES_URL = "postgres://default:79BDCyZPscYU@ep-falling-sound-a14b3thc-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require"
+const POSTGRES_URL = "postgresql://ipldb_owner:bE0rGxJ3XWhg@ep-crimson-boat-a1jkytyd.ap-southeast-1.aws.neon.tech/ipldb?sslmode=require"
 
 const sql = neon(POSTGRES_URL);
 const db = drizzle(sql, {
@@ -21,20 +21,8 @@ function BatRank() {
     const [inns, setInns] = useState("");
     const [runs, setRuns] = useState("");
     const [balls, setBalls] = useState("");
-
-    // const [inns, balls, runs] = [0, 0, 0];
-
     const [data, setData] = useState({});
 
-    // async function dataloader() {
-    //     const args = [inns , balls , runs]
-
-    //     const url = `https://ipl-sabermetrics.onrender.com/api/bat?arguments=${encodeURIComponent(JSON.stringify(args))}`;
-
-    //     fetch(url, {
-    //         method: 'POST',
-    //     }).then((response) => response.json()).then(data => {setData(JSON.parse(data))});
-    // }
     async function dataloader() {
         let [b,r,i] = [balls , runs , inns];
         if(i == "")
@@ -62,9 +50,6 @@ function BatRank() {
     return (
 
         <>
-            {/* <div className='p-4'>
-                <Navbar></Navbar>
-            </div> */}
             <DataTable columns={batRankColumns} data={data} />
             <div className="flex items-center mx-4 space-x-2 py-4">
                 <div className="flex items-center py-4">

@@ -1,9 +1,13 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { SearchContext } from './SearchContext';
+import PlayerAutoCompleteInput from './PlayerAutoCompleteInput';
+
 
 function Navbar() {
 
   const location = useLocation();
+  const { searchQuery, setSearchQuery } = useContext(SearchContext);
 
   const [theme, setTheme] = useState(null);
 
@@ -98,6 +102,8 @@ function Navbar() {
         </button>
 
       </div>
+
+      {location.pathname === '/player' && <PlayerAutoCompleteInput setSearchQuery = {setSearchQuery}></PlayerAutoCompleteInput>}
 
     </nav>
   )

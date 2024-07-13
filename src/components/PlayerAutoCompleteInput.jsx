@@ -1,8 +1,7 @@
 "use client"
 
-import * as React from "react"
+import { useState, useEffect } from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -18,13 +17,25 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-
+import { getPlayers } from '@/lib/player';
 
 export default function PlayerAutoCompleteInput(props) {
-    const [open, setOpen] = React.useState(false)
-    const [unique_name, setunique_name] = React.useState("")
+    const [open, setOpen] = useState(false)
+    const [unique_name, setunique_name] = useState("")
 
+    const [players, setPlayers] = useState([
+        { name: "RG Sharma", unique_name: "RG Sharma", team: "['Mumbai Indians', 'Deccan Chargers']", image: null },
+        { name: "SK Raina", unique_name: "SK Raina", team: "['Gujarat Lions', 'Chennai Super Kings']", image: null }
+    ]);
 
+    useEffect(() => {
+        async function foo() {
+            const h = await getPlayers().then(
+                (response) => { console.log(response); setPlayers(response) }
+            );
+        }
+        foo()
+    }, [])
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -36,25 +47,25 @@ export default function PlayerAutoCompleteInput(props) {
                     className="w-[200px] justify-between"
                 >
                     {unique_name
-                        ? props.players.find((player) => player.unique_name === unique_name)?.cname
+                        ? players.find((player) => player.unique_name === unique_name)?.name
                         : "Select player..."}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
-            </PopoverTrigger>
+            </PopoverTrigger>   
             <PopoverContent className="w-[200px] p-0">
                 <Command>
                     <CommandInput placeholder="Search player..." />
-
                     <CommandList>
-
                         <CommandEmpty>No players found.</CommandEmpty>
                         <CommandGroup>
-                            {props.players.map((player , index) => (
+                            {players.map((player, index) => (
                                 <CommandItem
                                     key={index}
                                     value={player.unique_name}
-                                    onSelect={(currentunique_name) => {
-                                        setunique_name(currentunique_name === unique_name ? "" : currentunique_name)
+                                    onSelect={(current_unique_name) => {
+                                        console.log(current_unique_name)
+                                        props.setSearchQuery(current_unique_name)
+                                        setunique_name(current_unique_name === unique_name ? "" : current_unique_name)
                                         setOpen(false)
                                     }}
                                 >
@@ -64,7 +75,7 @@ export default function PlayerAutoCompleteInput(props) {
                                             unique_name === player.unique_name ? "opacity-100" : "opacity-0"
                                         )}
                                     />
-                                    {player.cname}
+                                    {player.name}
                                 </CommandItem>
                             ))}
                         </CommandGroup>

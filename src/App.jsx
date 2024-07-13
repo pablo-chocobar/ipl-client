@@ -8,7 +8,6 @@ import BatRank from './pages/BatRank'
 import BowlRank from './pages/BowlRank'
 import Dummy from "./pages/Dummy"
 import Navbar from './components/Navbar'
-
 import { Routes, Route } from 'react-router-dom'
 
 function App() {

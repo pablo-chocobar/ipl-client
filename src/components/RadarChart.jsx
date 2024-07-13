@@ -17,7 +17,6 @@ import {
 
 export function RadarChartComponent(props) {
     const item = props.dataKey;
-    
     const chartConfig = {
         "stat": {
           label: props.label,

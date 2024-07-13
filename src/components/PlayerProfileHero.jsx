@@ -65,6 +65,8 @@ function PlayerProfileHero(props) {
     {"stat": "wickets", "value": props.bowlstats.wickets},]
   }
 
+  console.log(stats)
+
   stats = normalizeStats(stats);
   return (
     <section className='my-4'>

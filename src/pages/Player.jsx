@@ -19,6 +19,8 @@ import { drizzle } from 'drizzle-orm/neon-http';
 import { eq } from 'drizzle-orm';
 import { SearchContext } from '../components/SearchContext';
 
+import { PlayerStatTabs } from '@/components/PlayerYearCard';
+import {PlayerYearGraph} from '@/components/PlayerYearGraph';
 
 const POSTGRES_URL = "postgresql://ipldb_owner:bE0rGxJ3XWhg@ep-crimson-boat-a1jkytyd.ap-southeast-1.aws.neon.tech/ipldb?sslmode=require"
 
@@ -84,51 +86,52 @@ function Player() {
             }
 
             {battingData && battingData.balls > 0 &&
-                <div className="mt-4">
-                    <p className="text-3xl font-extrabold font-PlayfairDisplay mx-[3%] px-10">Batting Career</p>
+                <div className="mt-4 mx-[3%] px-10">
+                    <p className="text-3xl font-extrabold font-PlayfairDisplay mb-4">Batting Career</p>
                     <DataTable columns={batRankColumns} data={[battingData]} />
                 </div>
             }
 
             {bowlingData && bowlingData.balls > 0 &&
-                <div className="mt-4">
-                    <p className="text-3xl font-extrabold font-PlayfairDisplay mx-[3%] px-10">Bowling Career</p>
+                <div className="mt-4 mx-[3%] px-10">
+                    <p className="text-3xl font-extrabold font-PlayfairDisplay mb-4">Bowling Career</p>
                     <DataTable columns={bowlRankColumns} data={[bowlingData]} />
                 </div>
             }
 
+
             {battingData && battingData.balls > 0 &&
-                <Collapsible className="mt-4 w-full">
-                    <CollapsibleTrigger className='mx-[3%] px-10 flex space-x-2 items-end'>
+                <Collapsible className="mt-4 mx-[3%] px-10" defaultOpen={true}>
+                    <CollapsibleTrigger className=' flex space-x-2 items-end'>
                         <p className="text-3xl font-extrabold font-PlayfairDisplay">Batting by year</p>
                         <div className='p-2 rounded-lg hover:bg-secondary/80'>
                         <ChevronsUpDown className="h-4 w-4" />
                         </div>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                        {yearBattingData && <DataTable columns={batColumns} data={yearBattingData} />}
+                        {yearBattingData && <PlayerStatTabs Table = {<DataTable columns={batColumns} data={yearBattingData} />} 
+                        Graph = {<PlayerYearGraph columns={batColumns} data={yearBattingData}/>}/>}
                     </CollapsibleContent>
                 </Collapsible>
             }
 
             {bowlingData && bowlingData.balls > 0 &&
-                <Collapsible className="mt-4">
-                    <CollapsibleTrigger className='mx-[3%] px-10 flex space-x-2 items-end'>
+                <Collapsible className="mt-4 mx-[3%] px-10 " defaultOpen={true}>
+                    <CollapsibleTrigger className='flex space-x-2 items-end'>
                         <p className="text-3xl font-extrabold font-PlayfairDisplay">Bowling by year</p>
                         <div className='p-2 rounded-lg hover:bg-secondary/80'>
                         <ChevronsUpDown className="h-4 w-4" />
                         </div>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                        {yearBowlingData && <DataTable columns={bowlColumns} data={yearBowlingData} />}
+                        {yearBowlingData &&  <PlayerStatTabs Table = {<DataTable columns={bowlColumns} data={yearBowlingData} />} 
+                        Graph = {<PlayerYearGraph columns={bowlColumns} data={yearBowlingData}/>}/>}
                     </CollapsibleContent>
                 </Collapsible>
             }
 
             <p className='mt-4'></p>
-
         </>
-
     )
 }
 

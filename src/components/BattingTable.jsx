@@ -38,7 +38,7 @@ import {
     })
   
     return (
-      <div className="mx-[3%] px-10 mt-4">
+      <div>
         <div className="rounded-md border">
           <Table>
             <TableHeader>

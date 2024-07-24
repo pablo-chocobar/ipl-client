@@ -110,7 +110,7 @@ function Player() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                         {yearBattingData && <PlayerStatTabs Table = {<DataTable columns={batColumns} data={yearBattingData} />} 
-                        Graph = {<PlayerYearGraph columns={batColumns} data={yearBattingData}/>}/>}
+                        Graph = {<PlayerYearGraph columns={batColumns} data={yearBattingData} title="Batting Chart" desc="Batting stats over the years"/>}/>}
                     </CollapsibleContent>
                 </Collapsible>
             }
@@ -125,7 +125,7 @@ function Player() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                         {yearBowlingData &&  <PlayerStatTabs Table = {<DataTable columns={bowlColumns} data={yearBowlingData} />} 
-                        Graph = {<PlayerYearGraph columns={bowlColumns} data={yearBowlingData}/>}/>}
+                        Graph = {<PlayerYearGraph columns={bowlColumns} data={yearBowlingData} title="Bowling Chart" desc="Bowling stats over the years"/> }/>}
                     </CollapsibleContent>
                 </Collapsible>
             }

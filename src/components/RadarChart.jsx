@@ -26,8 +26,8 @@ export function RadarChartComponent(props) {
     const chartData = props.data;
 
   return (
-    <Card className = "bg-[#e6d5bc] text-[#60432f] border border-[#c7a26b]">
-      <CardHeader className="items-center pb-4 ">
+    <Card className = "">
+      <CardHeader className="items-center pb-4 text-content ">
         <CardTitle>Player Overview</CardTitle>
         <CardDescription>
         </CardDescription>
@@ -35,15 +35,15 @@ export function RadarChartComponent(props) {
       <CardContent className="pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto max-h-[250px] bg-[#e6d5bc]"
+          className="mx-auto max-h-[250px] bg-primary"
         >
           <RadarChart data={chartData}>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartTooltip cursor={false} className="bg-black/50"  content={<ChartTooltipContent />} />
             <PolarAngleAxis dataKey= {props.dataKey} />
             <PolarGrid />
             <Radar
               dataKey= {props.label}
-              fill="#957d67"
+              fill="hsl(var(--color-content))"
               fillOpacity={0.6}
             />
           </RadarChart>
@@ -52,3 +52,7 @@ export function RadarChartComponent(props) {
     </Card>
   )
 }
+
+// bg-[#e6d5bc] text-[#60432f] border border-[#c7a26b]
+//  bg-[#e6d5bc]
+// #957d67

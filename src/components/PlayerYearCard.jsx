@@ -1,11 +1,7 @@
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import {
   Tabs,
@@ -27,7 +23,6 @@ export function PlayerStatTabs(props) {
             {props.Graph}
           </CardContent>
           <CardFooter>
-            <Button>Save changes</Button>
           </CardFooter>
         </Card>
       </TabsContent>
@@ -37,7 +32,6 @@ export function PlayerStatTabs(props) {
             {props.Table}
           </CardContent>
           <CardFooter>
-            <Button>Save table</Button>
           </CardFooter>
         </Card>
       </TabsContent>

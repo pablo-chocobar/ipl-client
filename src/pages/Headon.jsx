@@ -31,25 +31,11 @@ function Headon() {
     }
       console.log(data);
 
-    // if (batter !== "" & bowler !== "") {
-    //   fetch(`https://ipl-sabermetrics.onrender.com/headon?batter=${encodeURIComponent(batter)}&bowler=${encodeURIComponent(bowler)}`
-    //     , {
-    //       method: 'POST',
-    //     }).then((response) => response.json()).then((json) => { setData(...json); });
-    // }
-
   }, [batter, bowler]);
-
-  // useEffect(()=>{
-
-  //   document.documentElement.style.setProperty('--bowlercolor', data["bowler_color"]);
-  //   document.documentElement.style.setProperty('--battercolor', data["batter_color"]);
-  // } , [data]);
 
   return (
     <div>
       <Headonform setBatter={setBatter} setBowler={setBowler}></Headonform>
-      {/* <HeadonPlayerImage player1 = {batter} player2 = {bowler} batter_img = {data["batter_img"]} bowler_img = {data["bowler_img"]}></HeadonPlayerImage> */}
       <HeadonComparison data= {data} ></HeadonComparison>
     </div>
   )

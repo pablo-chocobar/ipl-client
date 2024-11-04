@@ -50,11 +50,11 @@ const batRankColumns = batRankColumnDefinitions.map(({ key, name }) => ({
 
 const batColumnDefinitions = [
     { name: "Year", key: "year" },
-    { name: "Inns", key: "career_innings" },
-    { name: "Balls", key: "total_balls" },
-    { name: "Runs", key: "total_runs" },
+    { name: "Inns", key: "innings" },
+    { name: "Balls", key: "balls" },
+    { name: "Runs", key: "runs" },
     { name: "HS", key: "career_highest" },
-    { name: "AVG", key: "avg" },
+    { name: "AVG", key: "average" },
     { name: "SR", key: "strike_rate" },
     { name: "100s", key: "cents" },
     { name: "50s", key: "fifty" },

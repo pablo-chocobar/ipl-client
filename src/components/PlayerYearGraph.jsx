@@ -96,6 +96,3 @@ export function PlayerYearGraph(props) {
     </Card>
   )
 }
-
-// bg-[#e6d5bc] text-[#60432f] hover:text-[#e6d5bc] aria-[selected=true]:text-[#e6d5bc] 
-// bg-[#e6d5bc] text-[#60432f] 

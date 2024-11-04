@@ -146,11 +146,11 @@ export function displayBatterOverall(deliveries, name) {
     const { innings, hs, cents, hfcents, thirty } = getBatterHighest(deliveries);
 
     return {
-        career_innings: innings,
-        total_balls: balls,
-        total_runs: runs,
+        innings: innings,
+        balls: balls,
+        runs: runs,
         career_highest: hs,
-        avg: average,
+        average: average,
         strike_rate,
         cents,
         fifty: hfcents,
@@ -205,7 +205,7 @@ export async function getBatterOverall(name) {
     const { innings, hs, cents, hfcents, thirty } = getBatterHighest(deliveries);
 
     return {
-        career_innings: innings,
+        innings: innings,
         total_balls: balls,
         total_runs: runs,
         career_highest: hs,
